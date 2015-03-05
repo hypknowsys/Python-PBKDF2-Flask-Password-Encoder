@@ -28,7 +28,7 @@ public class PBKDF2PasswordEncoder {
         // TODO Auto-generated constructor stub
     }
     
-    public String encodePassword(String rawPassword, String securityPasswordSalt                           ,  String algorithm) throws Exception, NoSuchAlgorithmException {
+    public String encodePassword(String rawPassword, String securityPasswordSalt, String algorithm) throws Exception, NoSuchAlgorithmException {
         
         
         
@@ -54,11 +54,6 @@ public class PBKDF2PasswordEncoder {
         byte[] randomBytes = RandomUtils.nextBytes(randomSaltLength);
         String randomSalt64Encoded = Base64.encodeBase64String(randomBytes);
         
-//        if (randomSalt64Encoded.endsWith("==")) {
-//            randomSalt64Encoded = randomSalt64Encoded.substring(1, randomSalt64Encoded.length() - 2);
-//        }
-//        
-        
 
         
         /* create PBKDF2 */
@@ -66,11 +61,7 @@ public class PBKDF2PasswordEncoder {
         SecretKeyFactory f = SecretKeyFactory.getInstance(secretFactory);
     
         String finalPBKDF2 = Base64.encodeBase64String(f.generateSecret(spec).getEncoded());
-        
-//        if (finalPBKDF2.endsWith("==")) {
-//            finalPBKDF2 = finalPBKDF2.substring(1, finalPBKDF2.length() - 2);
-//        }
-//        
+ 
         
         
         StringBuffer tmpStringBuffer = new StringBuffer();
@@ -90,7 +81,7 @@ public class PBKDF2PasswordEncoder {
         
         
         try {
-            System.out.println(myPBKDF2PasswordEncoder.encodePassword("arschloch","6e95b1ed-a8c3-4da0-8bac-6fcb11c39ab4", "pbkdf2-sha512"));
+            System.out.println(myPBKDF2PasswordEncoder.encodePassword("mypassword","6e95b1ed-a8c3-4da0-8bac-6fcb11c39ab4", "pbkdf2-sha512"));
         }
         
         catch (Exception e) {
